@@ -89,14 +89,15 @@ export async function getDashboardData(userId: string): Promise<DashboardData> {
       date: format(snapshot.capturedAt, "MMM d"),
       total: snapshot.totalSolved,
     })),
-    monthlyProgress: Object.entries(calendar)
-      .reduce<Map<string, number>>((months, [timestamp, count]) => {
-        const month = format(fromUnixTime(Number(timestamp)), "MMM");
-        months.set(month, (months.get(month) ?? 0) + count);
-        return months;
-      }, new Map())
-      .entries()
-      .toArray()
+    monthlyProgress: Array.from(
+      Object.entries(calendar)
+        .reduce<Map<string, number>>((months, [timestamp, count]) => {
+          const month = format(fromUnixTime(Number(timestamp)), "MMM");
+          months.set(month, (months.get(month) ?? 0) + count);
+          return months;
+        }, new Map())
+        .entries(),
+    )
       .map(([month, solved]) => ({ month, solved })),
     calendar: calendarToDays(calendar),
     topicStats,
