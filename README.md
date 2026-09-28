@@ -36,3 +36,4 @@ The easiest way to deploy your Next.js app is to use the [Vercel Platform](https
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
 
 # Leettrack
+Low Key I just use notion. This was a spontaneous vibe coded idea.
